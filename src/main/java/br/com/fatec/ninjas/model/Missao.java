@@ -3,6 +3,7 @@ package br.com.fatec.ninjas.model;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import  lombok.Data;
 
@@ -23,11 +24,15 @@ public class Missao {
     @Column (name = "descricao_missao", nullable=false, unique=true)
     private String descricao;
 
-    @Column (name = "rank_missao", nullable=false, unique=true)
-    private String rank;
+    @Column(name = "rank_missao", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Rank da missão é obrigatório")
+    private Rank rank;
 
-    @Column (name = "status_missao", nullable=false, unique=true)
-    private String status;
+    @Column(name = "status_missao", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "Status da missão é obrigatório")
+    private StatusMissao status;
 
     @Column (name = "recompensa_missao", nullable=false, unique=true)
     private String recompensa;
